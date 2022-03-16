@@ -56,3 +56,14 @@ export type ResultFileBuilder<T> = (
   format: string,
   lang?: string
 ) => OutputFile;
+
+export function mapHeaders<T>(
+  columns: ColumnConfig<T>[],
+  t: Translate
+): MapHeader;
+
+export function mapData<T>(params: MapDataParams<T>): any;
+
+export function transform(params: TransformParams): OutputFile;
+
+export function createFileBuilder<T>(config: Config<T>): ResultFileBuilder<T>;
