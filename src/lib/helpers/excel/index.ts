@@ -1,9 +1,7 @@
 import xlsx from 'node-xlsx';
 import { BuildParams, OutputFile } from '../../../../types';
 
-const RANGE = { s: { c: 0, r: 0 }, e: { c: 0, r: 3 } }; // A1:A4
-
-const SHEET_OPTIONS = { '!merges': [RANGE] };
+const SHEET_OPTIONS = {};
 
 export function build(params: BuildParams): OutputFile {
   const { name, headers, data: rawData } = params;
