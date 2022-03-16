@@ -65,13 +65,14 @@
     "no-unsafe-negation": 2,
     "no-unsafe-optional-chaining": 2,
     "no-unused-labels": 2,
-    "no-unused-vars": 2,
     "no-useless-backreference": 2,
     "no-useless-catch": 2,
     "no-useless-escape": 2,
     "no-with": 2,
     "require-yield": 2,
     "use-isnan": 2,
-    "valid-typeof": 2
+    "valid-typeof": 2,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-unnecessary-type-constraint": 0
   }
 }
