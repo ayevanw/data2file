@@ -1,5 +1,5 @@
 import { ConfigurationOptions, I18n } from 'i18n';
-import { Translate } from '../../types';
+import { Translate } from '@/types/index';
 
 export function buildI18n(config: ConfigurationOptions): I18n {
   const i18n = new I18n();
