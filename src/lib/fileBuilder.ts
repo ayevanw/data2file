@@ -7,9 +7,9 @@ import {
   OutputFile,
   ResultFileBuilder,
   TransformParams,
-} from '../../types';
+  Translate,
+} from '@/types/index';
 import { buildI18n, createTranslation } from './language';
-import { Translate } from '../../types';
 import { get } from './utils';
 import { excel, csv, json } from './helpers';
 

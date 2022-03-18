@@ -1,5 +1,4 @@
 import { ConfigurationOptions, I18n } from 'i18n';
-import { Translate } from './language';
 
 export enum FORMATS {
   excel = 'EXCEL',
@@ -7,6 +6,8 @@ export enum FORMATS {
   json = 'JSON',
   pdf = 'PDF', //comming soon
 }
+
+export type Translate = (phrase: string) => string;
 
 export interface FormatterParams<T, V extends any = any> {
   value?: V;
@@ -64,14 +65,3 @@ export type ResultFileBuilder<T> = (
   format: FORMATS,
   lang?: string
 ) => OutputFile;
-
-export function mapHeaders<T>(
-  columns: ColumnConfig<T>[],
-  t: Translate
-): MapHeader;
-
-declare function mapData<T>(params: MapDataParams<T>): any;
-
-declare function transform(params: TransformParams): OutputFile;
-
-declare function createFileBuilder<T>(config: Config<T>): ResultFileBuilder<T>;

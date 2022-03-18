@@ -1,4 +1,4 @@
-import { TransformParams, OutputFile } from '../../../../types';
+import { TransformParams, OutputFile } from '@/types/index';
 
 export function build(params: TransformParams): OutputFile {
   const { data: rawData } = params;
