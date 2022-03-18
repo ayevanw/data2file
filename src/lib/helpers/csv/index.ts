@@ -1,5 +1,5 @@
 import { stringify } from 'csv-stringify/sync';
-import { TransformParams, OutputFile } from '../../../../types';
+import { TransformParams, OutputFile } from '@/types/index';
 
 export function build(params: TransformParams): OutputFile {
   const { headers, data: rawData } = params;
