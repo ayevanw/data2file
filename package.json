@@ -1,6 +1,6 @@
 {
   "name": "data2file",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "repository": "https://ayevanw@github.com/ayevanw/data2file.git",
