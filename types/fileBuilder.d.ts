@@ -1,6 +1,13 @@
 import { ConfigurationOptions, I18n } from 'i18n';
 import { Translate } from './language';
 
+export enum FORMATS {
+  excel = 'EXCEL',
+  csv = 'CSV',
+  json = 'JSON',
+  pdf = 'PDF', //comming soon
+}
+
 export interface FormatterParams<T, V extends any = any> {
   value?: V;
   values: T;
@@ -17,13 +24,17 @@ export interface ColumnConfig<T> {
   formatter?: FormatterCb<T>;
 }
 
-export type MapHeader = {
-  [key: string]: string;
-};
+export interface ObjectType<T extends any> {
+  [key: string]: T;
+}
 
-export type MapData = {
+export interface StringMap {
   [key: string]: string;
-};
+}
+
+export type MapHeader = StringMap;
+
+export type MapData = StringMap;
 
 export interface MapDataParams<T> {
   rawData: T[];
@@ -34,26 +45,23 @@ export interface MapDataParams<T> {
 }
 
 export interface Config<T> {
-  prefixName: string;
+  prefixName?: string;
   columns: ColumnConfig<T>[];
   i18nConfig?: ConfigurationOptions;
 }
 
-export interface OutputFile {
-  name: string;
-  buffer: Buffer;
-}
+export type OutputFile = Buffer;
 
 export interface TransformParams {
   format?: string;
-  name: string;
   data: MapData[];
   headers: MapHeader;
+  prefixName?: string;
 }
 
 export type ResultFileBuilder<T> = (
   rawData: T[],
-  format: string,
+  format: FORMATS,
   lang?: string
 ) => OutputFile;
 
@@ -62,8 +70,8 @@ export function mapHeaders<T>(
   t: Translate
 ): MapHeader;
 
-export function mapData<T>(params: MapDataParams<T>): any;
+declare function mapData<T>(params: MapDataParams<T>): any;
 
-export function transform(params: TransformParams): OutputFile;
+declare function transform(params: TransformParams): OutputFile;
 
-export function createFileBuilder<T>(config: Config<T>): ResultFileBuilder<T>;
+declare function createFileBuilder<T>(config: Config<T>): ResultFileBuilder<T>;

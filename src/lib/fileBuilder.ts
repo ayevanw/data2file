@@ -1,6 +1,7 @@
 import {
   ColumnConfig,
   Config,
+  FORMATS,
   MapDataParams,
   MapHeader,
   OutputFile,
@@ -10,13 +11,7 @@ import {
 import { buildI18n, createTranslation } from './language';
 import { Translate } from '../../types';
 import { get } from './utils';
-import { excel, csv } from './helpers';
-
-export enum FORMATS {
-  excel = 'EXCEL',
-  csv = 'CSV',
-  pdf = 'PDF', //comming soon
-}
+import { excel, csv, json } from './helpers';
 
 export function mapHeaders<T>(
   columns: ColumnConfig<T>[],
@@ -53,14 +48,16 @@ export function mapData<T>(params: MapDataParams<T>) {
 }
 
 export function transform(params: TransformParams): OutputFile {
-  const { headers, data, name, format } = params;
+  const { format } = params;
 
   switch (format) {
     case FORMATS.csv:
-      return csv({ headers, data, name });
+      return csv(params);
     case FORMATS.excel:
+      return excel(params);
+    case FORMATS.json:
     default:
-      return excel({ headers, data, name });
+      return json(params);
   }
 }
 
@@ -76,8 +73,6 @@ export function createFileBuilder<T>(config: Config<T>): ResultFileBuilder<T> {
 
     const data = mapData<T>({ rawData, columns, i18n, lang, t });
 
-    const name = `${prefixName}-${Date.now()}`;
-
-    return transform({ headers, data, name, format });
+    return transform({ headers, data, format, prefixName });
   };
 }
